@@ -46,6 +46,8 @@ class User{
 
             if($user){
 
+                print_r($this->data());
+
                 if($this->data()->password === Hash::make($password, $this->data()->salt)){
                     Session::put($this->_sessionName, $this->data()->id);
 
@@ -88,6 +90,18 @@ class User{
 
         return false;
 
+    }
+
+    public function hasPermission($key){
+        $group = $this->_db->get('groups', array('id', '=', $this->data()->group));
+
+        if($group->count()){
+            $permission = json_decode($group->first()->permissions, true);
+
+            return !empty($permission[$key]);
+        }
+
+        return false;
     }
 
     public function exists(){
