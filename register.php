@@ -8,33 +8,33 @@ if(Input::exists()){
 
     if(Token::check(Input::get('token'))){
 
-//        $validate = new Validate();
-//        $validation = $validate->check($_POST, array(
-//            'name' => array(
-//                'name' => 'Name',
-//                'required' => true,
-//                'min' => 2,
-//                'max' => 50
-//            ),
-//            'username' => array(
-//                'name' => 'Username',
-//                'required' => true,
-//                'min' => 2,
-//                'max' => 20,
-//                'unique' => 'users'
-//            ),
-//            'password' => array(
-//                'name' => 'Password',
-//                'required' => true,
-//                'min' => 6
-//            ),
-//            'password_again' => array(
-//                'required' => true,
-//                'matches' => 'password'
-//            ),
-//        ));
+        $validate = new Validate();
+        $validation = $validate->check($_POST, array(
+            'name' => array(
+                'name' => 'Name',
+                'required' => true,
+                'min' => 2,
+                'max' => 50
+            ),
+            'username' => array(
+                'name' => 'Username',
+                'required' => true,
+                'min' => 2,
+                'max' => 20,
+                'unique' => 'users'
+            ),
+            'password' => array(
+                'name' => 'Password',
+                'required' => true,
+                'min' => 6
+            ),
+            'password_again' => array(
+                'required' => true,
+                'matches' => 'password'
+            ),
+        ));
 
-//        if($validate->passed()){
+        if($validate->passed()){
             $user = new User();
             $salt = Hash::salt(32);
 
@@ -57,13 +57,13 @@ if(Input::exists()){
             }catch (Exception $e){
                 echo $e->getMessage() . '<br>';
             }
-//        }else{
-//            $errors = $validate->errors();
-//
-//            foreach($errors as $error){
-//                echo $error . "<br>";
-//            }
-//        }
+        }else{
+            $errors = $validate->errors();
+
+            foreach($errors as $error){
+                echo $error . "<br>";
+            }
+        }
 
     }
 
